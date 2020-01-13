@@ -81,7 +81,7 @@ function SM3Digest() {
     this.T_00_15 = 0x79cc4519;
     this.T_16_63 = 0x7a879d8a;
     if (arguments.length > 0) {
-        this.InitDigest(arguments[0])
+        SM3Digest.InitDigest(arguments[0])
     } else {
         this.Init()
     }
