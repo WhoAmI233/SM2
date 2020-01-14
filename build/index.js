@@ -9338,7 +9338,7 @@ KJUR.asn1.x509.X500Name.ldapToOneline = function (s) {
     var a2 = [];
     for (var i = 0; a.length > 0; i++) {
         var item = a.shift();
-        ////console.log("item=" + item);
+        //console.log("item=" + item);
 
         if (isBSbefore === true) {
             var a2last = a2.pop();
@@ -9472,7 +9472,7 @@ KJUR.asn1.x509.RDN.parseString = function (s) {
     var a2 = [];
     for (var i = 0; a.length > 0; i++) {
         var item = a.shift();
-        ////console.log("item=" + item);
+        //console.log("item=" + item);
 
         if (isBSbefore === true) {
             var a2last = a2.pop();
@@ -9506,7 +9506,7 @@ KJUR.asn1.x509.RDN.parseString = function (s) {
         }
 
         if (item.match(/^[^=]+="/)) {
-            ////console.log(i + "=" + item);
+            //console.log(i + "=" + item);
             beginQuote = true;
         }
     }
@@ -25784,9 +25784,9 @@ KJUR.crypto.Signature = function (params) {
             };
 
             this.initSign = function (params) {
-                //console.log("///////////////")
+                //console.log("/////////")
                 //console.log(params)
-                //console.log("///////////////")
+                //console.log("/////////")
                 if (typeof params['prvKeyHex'] == 'string' &&
                     typeof params['curveName'] == 'string') {
                     this.ecprvhex = params['prvKeyHex'];
@@ -27112,7 +27112,7 @@ KJUR.crypto.SM3withSM2 = function (params) {
             while (s.equals(BigInteger.ZERO));
             // // return this.serializeSig(r, s);
             var Q1 = ECPointFp.decodeFromHex(this.ecparams['curve'], priv._key.pubKeyHex);
-            ////console.log(this.verifyRaw(e, r, s, Q1))
+            //console.log(this.verifyRaw(e, r, s, Q1))
             return { r: r.toString(16), s: s.toString(16) }
         }
     };
@@ -27393,7 +27393,7 @@ SM3Digest.prototype = {
             this.xOff = 0;
             this.v = new Array(8);
             // Array.Copy(t.v, 0, this.v, 0, t.v.length)
-        } catch (e) { //console.log(e) }
+        } catch (e) { console.log(e) }
     }, GetDigestSize: function () {
         return this.DIGEST_LENGTH
     }, Reset: function () {
