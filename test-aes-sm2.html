@@ -82,7 +82,7 @@
                 });
                 return deEcrypData.toString(CryptoJS.enc.Utf8);
             } catch (e) {
-                console.log(e);
+                //console.log(e);
                 return JSON.stringify({
                     Code: 91,
                     message: '解密失败'
@@ -107,7 +107,7 @@
 
             var data = sm2Decrypt(encrypData, prvkey);
             f1.deCryptMsg.value = data;
-            console.log(data);
+            //console.log(data);
         }
     </script>
 </head>

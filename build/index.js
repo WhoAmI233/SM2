@@ -436,10 +436,10 @@ var CryptoJS = CryptoJS || (function (Math, undefined) {
          */
         stringify: function (wordArray) {
             try {
-                console.log("qqqqqqqq")
+                //console.log("qqqqqqqq")
                 var test = CryptoJS.enc.Base64.stringify(wordArray)
-                console.log(test)
-                console.log("qqqqqqqq")
+                //console.log(test)
+                //console.log("qqqqqqqq")
                 return decodeURIComponent(escape(test));
             } catch (e) {
                 throw new Error('Malformed UTF-8 data' + e);
@@ -4218,7 +4218,7 @@ KJUR.asn1.cms.SignerInfo = function (params) {
 
         // set signature
         var data = this.dSignedAttrs.getEncodedHex();
-        console.log("dam it a a a a  a4")
+        //console.log("dam it a a a a  a4")
         var prvKey = KEYUTIL.getKey(keyParam);
         var sig = new KJUR.crypto.Signature({ alg: sigAlg });
         sig.init(prvKey);
@@ -5488,9 +5488,9 @@ KJUR.asn1.csr.CertificationRequest = function (params) {
         this.hexSig = sig.sign();
 
         this.asn1Sig = new KJUR.asn1.DERBitString({ 'hex': '00' + this.hexSig });
-        console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<")
-        console.log(this.hexSig)
-        console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<")
+        //console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<")
+        //console.log(this.hexSig)
+        //console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<")
         var seq = new KJUR.asn1.DERSequence({
             'array': [this.asn1CSRInfo,
             this.asn1SignatureAlg,
@@ -5601,7 +5601,7 @@ KJUR.asn1.csr.CertificationRequestInfo = function (params) {
      * @see KEYUTIL.getKey
      */
     this.setSubjectPublicKeyByGetKey = function (keyParam) {
-        console.log("dam it a a a a  a3")
+        //console.log("dam it a a a a  a3")
         var keyObj = KEYUTIL.getKey(keyParam);
         this.asn1SubjPKey = new KJUR.asn1.x509.SubjectPublicKeyInfo(keyObj);
     };
@@ -5791,7 +5791,7 @@ KJUR.asn1.csr.CSRUtil.newCSRPEM = function (param) {
  *
  * @example
  * o = KJUR.asn1.csr.CSRUtil.getInfo("-----BEGIN CERTIFICATE REQUEST...");
- * console.log(o.subject.name) &rarr; "/C=US/O=Test"
+ * //console.log(o.subject.name) &rarr; "/C=US/O=Test"
  */
 KJUR.asn1.csr.CSRUtil.getInfo = function (sPEM) {
     var result = {};
@@ -8183,7 +8183,7 @@ KJUR.asn1.x509.TBSCertificate = function (params) {
      * @since asn1x509 1.0.6
      */
     this.setSubjectPublicKeyByGetKey = function (keyParam) {
-        console.log("dam it a a a a  a2")
+        //console.log("dam it a a a a  a2")
         var keyObj = KEYUTIL.getKey(keyParam);
         this.asn1SubjPKey = new KJUR.asn1.x509.SubjectPublicKeyInfo(keyObj);
     };
@@ -9338,7 +9338,7 @@ KJUR.asn1.x509.X500Name.ldapToOneline = function (s) {
     var a2 = [];
     for (var i = 0; a.length > 0; i++) {
         var item = a.shift();
-        //console.log("item=" + item);
+        ////console.log("item=" + item);
 
         if (isBSbefore === true) {
             var a2last = a2.pop();
@@ -9472,7 +9472,7 @@ KJUR.asn1.x509.RDN.parseString = function (s) {
     var a2 = [];
     for (var i = 0; a.length > 0; i++) {
         var item = a.shift();
-        //console.log("item=" + item);
+        ////console.log("item=" + item);
 
         if (isBSbefore === true) {
             var a2last = a2.pop();
@@ -9506,7 +9506,7 @@ KJUR.asn1.x509.RDN.parseString = function (s) {
         }
 
         if (item.match(/^[^=]+="/)) {
-            //console.log(i + "=" + item);
+            ////console.log(i + "=" + item);
             beginQuote = true;
         }
     }
@@ -20460,9 +20460,9 @@ var KEYUTIL = function () {
          */
         getKeyFromPlainPrivatePKCS8Hex: function (prvKeyHex) {
             var p8 = this.parsePlainPrivatePKCS8Hex(prvKeyHex);
-            console.log("============prvKey============")
-            console.log(p8)
-            console.log("============prvKey============")
+            //console.log("============prvKey============")
+            //console.log(p8)
+            //console.log("============prvKey============")
             if (p8.algoid == "2a864886f70d010101") { // RSA
                 this.parsePrivateRawRSAKeyHexAtObj(prvKeyHex, p8);
                 var k = p8.key;
@@ -20669,7 +20669,7 @@ var KEYUTIL = function () {
         parsePrivateRawECKeyHexAtObj: function (pkcs8PrvHex, info) {
             var keyIdx = info.keyidx;
             var key = ASN1HEX.getVbyList(pkcs8PrvHex, keyIdx, [1], "04");
-            console.log(key)
+            //console.log(key)
 
             var ec = new KJUR.crypto.SM3withSM2({ 'curve': 'sm2' });
             var charlen = ec.ecparams['keylen'] / 4;
@@ -20869,9 +20869,6 @@ var KEYUTIL = function () {
  * keyObj = KEYUTIL.getKey({n: "75ab..", e: "010001"});
  */
 KEYUTIL.getKey = function (param, passcode, hextype) {
-    console.log("=================getKey param=================")
-    console.log(param)
-    console.log("=================getKey param=================")
     // 1. by key RSAKey/KJUR.crypto.ECDSA/KJUR.crypto.DSA object
     if (typeof RSAKey != 'undefined' && param instanceof RSAKey)
         return param;
@@ -21276,7 +21273,7 @@ KEYUTIL.generateKeypair = function (alg, keylenOrCurve) {
 KEYUTIL.getPEM = function (keyObjOrHex, formatType, passwd, encAlg, hexType) {
     var ns1 = KJUR.asn1;
     var ns2 = KJUR.crypto;
-    console.log("cccccccccccccccccccccc" + formatType)
+    //console.log("cccccccccccccccccccccc" + formatType)
 
     function _rsaprv2asn1obj(keyObjOrHex) {
         var asn1Obj = KJUR.asn1.ASN1Util.newObject({
@@ -21528,7 +21525,7 @@ KEYUTIL.getPEM = function (keyObjOrHex, formatType, passwd, encAlg, hexType) {
             return ns1.ASN1Util.getPEMStringFromHex(asn1Hex2, "ENCRYPTED PRIVATE KEY");
         }
     }
-    console.log('ccc' + formatType)
+    //console.log('ccc' + formatType)
     // x. PEM PKCS#8 plain private key of ECDSA private key object
     if (formatType == "PKCS8PRV" &&
         typeof KJUR.crypto.ECDSA != "undefined" &&
@@ -21565,9 +21562,9 @@ KEYUTIL.getPEM = function (keyObjOrHex, formatType, passwd, encAlg, hexType) {
             return ns1.ASN1Util.getPEMStringFromHex(asn1Hex2, "ENCRYPTED PRIVATE KEY");
         }
     }
-    console.log("#####################")
-    console.log(keyObjOrHex instanceof KJUR.crypto.SM3withSM2)
-    console.log("#####################")
+    //console.log("#####################")
+    //console.log(keyObjOrHex instanceof KJUR.crypto.SM3withSM2)
+    //console.log("#####################")
     if (keyObjOrHex instanceof KJUR.crypto.SM3withSM2 && keyObjOrHex.isPublic) {
 
     }
@@ -21598,9 +21595,9 @@ KEYUTIL.getPEM = function (keyObjOrHex, formatType, passwd, encAlg, hexType) {
         });
 
         var asn1Hex = asn1Obj.getEncodedHex();
-        console.log("==============asn1Hex================")
-        console.log(asn1Hex)
-        console.log("==============asn1Hex================")
+        //console.log("==============asn1Hex================")
+        //console.log(asn1Hex)
+        //console.log("==============asn1Hex================")
         if (passwd === undefined || passwd == null) {
             return ns1.ASN1Util.getPEMStringFromHex(asn1Hex, "PRIVATE KEY");
         } else {
@@ -25766,7 +25763,7 @@ KJUR.crypto.Signature = function (params) {
                 var keyObj = null;
                 try {
                     if (pass === undefined) {
-                        console.log("dam it a a a a  a1")
+                        //console.log("dam it a a a a  a1")
                         keyObj = KEYUTIL.getKey(keyparam);
                     } else {
                         keyObj = KEYUTIL.getKey(keyparam, pass);
@@ -25787,9 +25784,9 @@ KJUR.crypto.Signature = function (params) {
             };
 
             this.initSign = function (params) {
-                console.log("///////////////")
-                console.log(params)
-                console.log("///////////////")
+                //console.log("///////////////")
+                //console.log(params)
+                //console.log("///////////////")
                 if (typeof params['prvKeyHex'] == 'string' &&
                     typeof params['curveName'] == 'string') {
                     this.ecprvhex = params['prvKeyHex'];
@@ -25852,13 +25849,13 @@ KJUR.crypto.Signature = function (params) {
                     rawData = smDigest.GetWords(rawData);
 
                     var smHash = new Array(smDigest.GetDigestSize());
-                    console.log("sksksksksksksksksksksksksksksksksksksksksk")
+                    //console.log("sksksksksksksksksksksksksksksksksksksksksk")
                     smDigest.BlockUpdate(zValue, 0, zValue.length);
-                    console.log("sksksksksksksksksksksksksksksksksksksksksk")
+                    //console.log("sksksksksksksksksksksksksksksksksksksksksk")
                     smDigest.BlockUpdate(rawData, 0, rawData.length);
-                    console.log("sksksksksksksksksksksksksksksksksksksksksk")
+                    //console.log("sksksksksksksksksksksksksksksksksksksksksk")
                     smDigest.DoFinal(smHash, 0);
-                    console.log("sksksksksksksksksksksksksksksksksksksksksk")
+                    //console.log("sksksksksksksksksksksksksksksksksksksksksk")
                     var hashHex = smDigest.GetHex(smHash).toString();
 
                     this.sHashHex = hashHex;
@@ -25938,9 +25935,9 @@ KJUR.crypto.Signature = function (params) {
                         var G = ec.ecparams['G'];
 
                         var pubKeyHex = this.ecpubhex.substr(2, 128);
-                        console.log("caoaoaoaoaoaoaoaoaoaoaoaoao")
+                        //console.log("caoaoaoaoaoaoaoaoaoaoaoaoao")
                         var smDigest = new SM3Digest();
-                        console.log("nimanimanimanima")
+                        //console.log("nimanimanimanima")
                         var z = new SM3Digest().GetZ(G, pubKeyHex);
                         var zValue = smDigest.GetWords(smDigest.GetHex(z).toString());
 
@@ -26652,7 +26649,7 @@ SM2Cipher.prototype = {
         }
     },
     Reset: function () {
-        console.log("的快速开始快速开始快速开始快速开始快速开始快速开始快速开始")
+        //console.log("的快速开始快速开始快速开始快速开始快速开始快速开始快速开始")
         this.sm3keybase = new SM3Digest();
         this.sm3c3 = new SM3Digest();
         var xWords = this.GetWords(this.p2.getX().toBigInteger().toRadix(16));
@@ -26665,7 +26662,7 @@ SM2Cipher.prototype = {
         this.NextKey()
     },
     NextKey: function () {
-        console.log("pippippopopopopopopopppopopopopopopo")
+        //console.log("pippippopopopopopopopppopopopopopopo")
         var sm3keycur = new SM3Digest(this.sm3keybase);
         sm3keycur.Update(this.ct >> 24 & 0xff);
         sm3keycur.Update(this.ct >> 16 & 0xff);
@@ -27032,9 +27029,9 @@ KJUR.crypto.SM3withSM2 = function (params) {
         var n = this.ecparams['n'];
         var e = new BigInteger(hash, 16)
 
-        console.log("N:", n.toString())
-        console.log("E:", e.toString())
-        console.log("D:", d.toString())
+        //console.log("N:", n.toString())
+        //console.log("E:", e.toString())
+        //console.log("D:", d.toString())
         var type = 3
         // k BigInteger
         if (type == 1) {
@@ -27076,10 +27073,10 @@ KJUR.crypto.SM3withSM2 = function (params) {
                 // s = da_1.multiply(s).mod(n);
             }
             while (s.equals(BigInteger.ZERO));
-            console.log("X:", X.toString())
-            console.log("Y:", Y.toString())
+            //console.log("X:", X.toString())
+            //console.log("Y:", Y.toString())
             var Q1 = ECPointFp.decodeFromHex(this.ecparams['curve'], priv._key.pubKeyHex);
-            console.log(this.verifyRaw(e, r, s, Q1))
+            //console.log(this.verifyRaw(e, r, s, Q1))
 
 
             return { r: r.toString(16), s: s.toString(16) }
@@ -27094,7 +27091,7 @@ KJUR.crypto.SM3withSM2 = function (params) {
 
             s = k.modInverse(n).multiply(e.add(d.multiply(r))).mod(n);
             var Q1 = ECPointFp.decodeFromHex(this.ecparams['curve'], priv._key.pubKeyHex);
-            console.log(this.verifyRaw(e, r, s, Q1))
+            //console.log(this.verifyRaw(e, r, s, Q1))
             return { r: r.toString(16), s: s.toString(16) }
         } else if (type == 3) {
             var r, s;
@@ -27113,10 +27110,9 @@ KJUR.crypto.SM3withSM2 = function (params) {
                 s = da_1.multiply(s).mod(n);
             }
             while (s.equals(BigInteger.ZERO));
-            console.log("123")
             // // return this.serializeSig(r, s);
             var Q1 = ECPointFp.decodeFromHex(this.ecparams['curve'], priv._key.pubKeyHex);
-            console.log(this.verifyRaw(e, r, s, Q1))
+            ////console.log(this.verifyRaw(e, r, s, Q1))
             return { r: r.toString(16), s: s.toString(16) }
         }
     };
@@ -27397,7 +27393,7 @@ SM3Digest.prototype = {
             this.xOff = 0;
             this.v = new Array(8);
             // Array.Copy(t.v, 0, this.v, 0, t.v.length)
-        } catch (e) { console.log(e) }
+        } catch (e) { //console.log(e) }
     }, GetDigestSize: function () {
         return this.DIGEST_LENGTH
     }, Reset: function () {
@@ -27519,7 +27515,7 @@ SM3Digest.prototype = {
             inOff += this.xBuf.length;
             length -= this.xBuf.length;
             this.byteCount += this.xBuf.length
-            // console.log("a2",length,"-",this.xBuf.length)
+            // //console.log("a2",length,"-",this.xBuf.length)
         }
         while (length > 0) {
             this.Update(input[inOff]);

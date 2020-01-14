@@ -110,8 +110,8 @@ SM2Cipher.prototype = {
             case SM2CipherMode.C1C3C2:
             hexString = this.getHexString(c1.getX().toBigInteger().toRadix(16)) + this.getHexString(c1.getY().toBigInteger().toRadix(16)) 
             + this.byte2hex(c3) + this.GetHex(data).toString();
-            console.log(this.GetHex(data).toString());
-            console.log(this.byte2hex(c3));
+            //console.log(this.GetHex(data).toString());
+            //console.log(this.byte2hex(c3));
             //hexString = this.getHexString(c1.getX().toBigInteger().toRadix(16)) + this.getHexString(c1.getY().toBigInteger().toRadix(16)) + this.GetHex(c3).toString() + this.GetHex(data).toString();
             //hexString = this.getHexString(c1.getX().toBigInteger().toRadix(16)) + this.getHexString(c1.getY().toBigInteger().toRadix(16)) + this.GetHex(c3).toString() + this.GetHex(data).toString();
           break;

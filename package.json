@@ -1,14 +1,14 @@
 {
-  "name": "sm2",
-  "version": "1.0.1",
-  "description": "sm2,sm3,cryptojs,crypto,base64,rsa,aes crypt",
+  "name": "sm2-fabric",
+  "version": "1.1.2",
+  "description": "sm2 for fabric-sdk-node",
   "main": "build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/lifesreason/SM2.git"
+    "url": "https://github.com/WhoAmI233/SM2.git"
   },
   "keywords": [
     "SM2",
@@ -54,7 +54,7 @@
     "JOSE",
     "JWA"
   ],
-  "author": "lifesreason",
+  "author": "qiuguochao",
   "license": "MIT",
   "devDependencies": {
     "gulp": "^3.9.1"
